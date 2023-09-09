@@ -8,7 +8,7 @@ class SheetProvider extends ChangeNotifier {
 
   double get initialExtent => _initialExtent;
   set initialExtent(double iExtent) {
-    this._initialExtent = iExtent;
+    _initialExtent = iExtent;
     notifyListeners();
   }
 }

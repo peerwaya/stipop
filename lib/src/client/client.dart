@@ -78,7 +78,6 @@ class SPClient {
   Future<SPResponse> _fetchCollection(Uri uri, SpCollectionType type) async {
     final response = await _getWithAuthorization(uri);
     final data = json.decode(response.body) as Map<String, dynamic>;
-    print("data: ${data}");
     data['sp_collection_type'] = type.name;
     return SPResponse.fromJson(data);
   }

@@ -19,10 +19,4 @@ class AppBarProvider with ChangeNotifier {
     _queryText = queryText;
     _debounceTimeInMilliseconds = debounceTimeInMilliseconds;
   }
-
-  @override
-  // ignore: must_call_super
-  void dispose() {
-    print("Dispose AppBarProvider");
-  }
 }

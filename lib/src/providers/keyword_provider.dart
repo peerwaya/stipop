@@ -19,10 +19,4 @@ class KeyWordProvider with ChangeNotifier {
     _keyWordText = queryText;
     _debounceTimeInMilliseconds = debounceTimeInMilliseconds;
   }
-
-  @override
-  // ignore: must_call_super
-  void dispose() {
-    print("Dispose KeyWordProvider");
-  }
 }
