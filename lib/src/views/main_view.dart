@@ -7,7 +7,7 @@ import 'package:flutter_stipop/src/views/tab/sp_tab_view.dart';
 import 'package:provider/provider.dart';
 
 class MainView extends StatefulWidget {
-  MainView({
+  const MainView({
     Key? key,
     this.showSearch = true,
     // this.showGIFs = true,
@@ -78,7 +78,7 @@ class _MainViewState extends State<MainView>
       builder: (ctx, scrollController) {
         // Set ScrollController
 
-        this._scrollController = scrollController;
+        _scrollController = scrollController;
         return _bottomSheetBody();
       });
 
@@ -93,13 +93,13 @@ class _MainViewState extends State<MainView>
           //   showEmojis: widget.showEmojis,
           // ),
           SearchAppBar(
-            scrollController: this._scrollController,
+            scrollController: _scrollController,
             searchAppBarBuilder: widget.searchAppBarBuilder,
           ),
           Expanded(
             child: SPTabView(
               tabController: _tabController,
-              scrollController: this._scrollController,
+              scrollController: _scrollController,
               showSearch: widget.showSearch,
               // showStickers: widget.showStickers,
               // showEmojis: widget.showEmojis,
