@@ -5,6 +5,7 @@ import 'package:flutter_stipop/src/client/models/sp_response.dart';
 import 'package:flutter_stipop/src/client/models/sp_sticker.dart';
 import 'package:flutter_stipop/src/client/models/sp_trend.dart';
 import 'package:flutter_stipop/src/providers/app_bar_provider.dart';
+import 'package:flutter_stipop/src/providers/keyword_provider.dart';
 import 'package:flutter_stipop/src/providers/tab_provider.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter_stipop/src/widgets/shimmer.dart';
@@ -13,7 +14,7 @@ class SPSearchTabDetail extends StatefulWidget {
   final ScrollController scrollController;
   final double parentWidth;
   final double parentHeight;
-  SPSearchTabDetail(
+  const SPSearchTabDetail(
       {Key? key,
       required this.scrollController,
       required this.parentWidth,
@@ -30,6 +31,8 @@ class _SPSearchTabDetailState extends State<SPSearchTabDetail> {
 
   // AppBar Provider
   late AppBarProvider _appBarProvider;
+
+  late KeyWordProvider _keyWordProvider;
 
   // Collection
   SPSearchResponse? _response;
@@ -68,6 +71,7 @@ class _SPSearchTabDetailState extends State<SPSearchTabDetail> {
 
     // AppBar Provider
     _appBarProvider = Provider.of<AppBarProvider>(context, listen: false);
+    _keyWordProvider = Provider.of<KeyWordProvider>(context, listen: false);
     _appBarProvider.addListener(_listenerQuery);
     widget.scrollController.addListener(_scrollListener);
     _gifWidth = 150.0;
@@ -114,7 +118,7 @@ class _SPSearchTabDetailState extends State<SPSearchTabDetail> {
               slivers: [
                 SliverToBoxAdapter(
                   child: SizedBox(
-                    height: 56.0,
+                    height: 48.0,
                     child: ListView.separated(
                         scrollDirection: Axis.horizontal,
                         padding: EdgeInsets.symmetric(horizontal: _spacing),
@@ -169,7 +173,7 @@ class _SPSearchTabDetailState extends State<SPSearchTabDetail> {
   Widget _trendingItem(SPTrend item) => ActionChip(
         label: Text(item.keyword),
         onPressed: () {
-          _appBarProvider.keyWordText = item.keyword;
+          _keyWordProvider.keyWordText = item.keyword;
         },
       );
 

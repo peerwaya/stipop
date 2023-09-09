@@ -3,6 +3,7 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:flutter_stipop/flutter_stipop.dart';
 import 'package:flutter_stipop/src/providers/app_bar_provider.dart';
+import 'package:flutter_stipop/src/providers/keyword_provider.dart';
 import 'package:flutter_stipop/src/providers/sheet_provider.dart';
 import 'package:flutter_stipop/src/tools/debouncer.dart';
 import 'package:provider/provider.dart';
@@ -37,7 +38,7 @@ class _SearchAppBarState extends State<SearchAppBar> {
   // Input Focus
   final FocusNode _focus = FocusNode();
 
-  String? _keyWordText;
+  late KeyWordProvider _keyWordProvider;
 
   @override
   void initState() {
@@ -48,6 +49,7 @@ class _SearchAppBarState extends State<SearchAppBar> {
     _textEditingController = TextEditingController(
         text: Provider.of<AppBarProvider>(context, listen: false).queryText);
 
+    _keyWordProvider = Provider.of<KeyWordProvider>(context, listen: false);
     WidgetsBinding.instance.addPostFrameCallback((_) {
       // Establish the debouncer
       final debouncer = Debouncer(
@@ -65,16 +67,14 @@ class _SearchAppBarState extends State<SearchAppBar> {
         });
       });
 
-      _appBarProvider.addListener(() {
-        debouncer.call(() {
-          if (_appBarProvider.keyWordText != _keyWordText) {
-            _keyWordText = _appBarProvider.keyWordText;
-            _textEditingController.value = TextEditingValue(
-              text: _keyWordText!,
-              selection: TextSelection.collapsed(offset: _keyWordText!.length),
-            );
-          }
-        });
+      _keyWordProvider.addListener(() {
+        if (_keyWordProvider.keyWordText != _textEditingController.value.text) {
+          _textEditingController.value = TextEditingValue(
+            text: _keyWordProvider.keyWordText,
+            selection: TextSelection.collapsed(
+                offset: _keyWordProvider.keyWordText.length),
+          );
+        }
       });
     });
 

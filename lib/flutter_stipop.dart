@@ -6,6 +6,7 @@ import 'package:flutter_stipop/src/client/client.dart';
 import 'package:flutter_stipop/src/client/models/languages.dart';
 import 'package:flutter_stipop/src/client/models/sp_sticker.dart';
 import 'package:flutter_stipop/src/providers/app_bar_provider.dart';
+import 'package:flutter_stipop/src/providers/keyword_provider.dart';
 import 'package:flutter_stipop/src/providers/sheet_provider.dart';
 import 'package:flutter_stipop/src/providers/tab_provider.dart';
 import 'package:flutter_stipop/src/views/main_view.dart';
@@ -59,6 +60,12 @@ class SPGet {
           ChangeNotifierProvider(
             create: (ctx) => AppBarProvider(
               queryText = queryText,
+              debounceTimeInMilliseconds,
+            ),
+          ),
+          ChangeNotifierProvider(
+            create: (ctx) => KeyWordProvider(
+              queryText = "",
               debounceTimeInMilliseconds,
             ),
           ),
