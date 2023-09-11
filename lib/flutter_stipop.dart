@@ -12,6 +12,14 @@ import 'package:flutter_stipop/src/providers/tab_provider.dart';
 import 'package:flutter_stipop/src/views/main_view.dart';
 import 'package:provider/provider.dart';
 
+// Client Export
+export 'package:flutter_stipop/src/client/client.dart';
+export 'package:flutter_stipop/src/client/models/languages.dart';
+export 'package:flutter_stipop/src/client/models/type.dart';
+export 'package:flutter_stipop/src/client/models/user.dart';
+export 'package:flutter_stipop/src/widgets/sp.widget.dart';
+export 'package:flutter_stipop/src/widgets/sticker.widget.dart';
+
 typedef TabTopBuilder = Widget Function(BuildContext context);
 typedef TabBottomBuilder = Widget Function(BuildContext context);
 typedef SearchAppBarBuilder = Widget Function(
