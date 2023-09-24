@@ -17,6 +17,7 @@ export 'package:flutter_stipop/src/client/client.dart';
 export 'package:flutter_stipop/src/client/models/languages.dart';
 export 'package:flutter_stipop/src/client/models/type.dart';
 export 'package:flutter_stipop/src/client/models/user.dart';
+export 'package:flutter_stipop/src/client/models/sp_sticker.dart';
 export 'package:flutter_stipop/src/widgets/sp.widget.dart';
 export 'package:flutter_stipop/src/widgets/sticker.widget.dart';
 
